@@ -11,7 +11,7 @@
                 src="../assets/img/hinh1.png"
                 alt="Apple Products"
                 class="img-fluid rounded-circle"
-                style="max-width: 1000px;"
+                style="max-width: 100%;"
               />
             </div>
             <h1 class="display-4 fw-bold">Chào mừng bạn đến với Apple</h1>
@@ -57,16 +57,16 @@
       <div class="row">
         <!-- Cột 1 -->
         <div class="col-md-6">
-          <h1 class="display-4 fw-bold text-dark">Về Apple</h1>
-          <img src="../assets/img/nen1.png" width="400" alt="">
+          <h1 class="display-4 fw-bold text-dark" align="center">Về Apple</h1>
+          <img src="../assets/img/nen1.png" width="100%" alt="">
           <p class="lead">
             Apple Inc. là một công ty công nghệ đa quốc gia có trụ sở tại Cupertino, California, Hoa Kỳ. Được thành lập bởi Steve Jobs, Steve Wozniak và Ronald Wayne vào năm 1976, Apple nhanh chóng trở thành một trong những công ty hàng đầu trên thế giới với các sản phẩm như iPhone, iPad, MacBook và nhiều sản phẩm khác.
           </p>
         </div>
         <!-- Cột 2 -->
         <div class="col-md-6">
-          <h1 class="display-4 fw-bold text-dark">Chính Sách Bảo Hành</h1>
-          <img src="../assets/img/nen2.jpg" width="400" alt="">
+          <h1 class="display-4 fw-bold text-dark" align="center">Chính Sách Bảo Hành</h1>
+          <img src="../assets/img/nen2.jpg" width="100%" alt="">
           <p class="lead">
             Apple cam kết cung cấp chất lượng và độ tin cậy trong từng sản phẩm. Chính sách bảo hành của chúng tôi bao gồm các điều kiện và dịch vụ hỗ trợ, đảm bảo khách hàng cảm thấy tự tin khi sử dụng sản phẩm của Apple.
           </p>
@@ -78,8 +78,8 @@
     <section class="container py-5">
       <div class="row text-center py-3">
         <div class="col-lg-8 m-auto">
-          <h1 class="display-4 fw-bold text-dark">Uy Tín Của Apple</h1>
-          <img src="../assets/img/nen3.jpg" width="600" alt="">
+          <h1 class="display-4 fw-bold text-dark" align="center">Uy Tín Của Apple</h1>
+          <img src="../assets/img/nen3.jpg" width="100%" alt="">
           <p class="lead">
             Apple đã xây dựng một uy tín cao trong ngành công nghiệp công nghệ với sự đổi mới liên tục và cam kết cung cấp trải nghiệm người dùng tốt nhất. Sự chú ý đặc biệt đến chất lượng và thiết kế đã làm cho Apple trở thành một trong những thương hiệu đáng tin cậy nhất trên thế giới.
           </p>
@@ -192,8 +192,8 @@ export default {
   color: #7f7f7f; /* Set text color to black */
 }
 .nen{
-  background-image: url(../assets/img/bg6.png);
-  width: 1200px;
-  height: 570px;
+ background-color: #bdbdbd;
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -59,7 +59,7 @@
   </div>
   <!-- Kết Thúc Banner Hero -->
 <div>
-  <img src="../assets/img/bgiphone15.png" width="1200" alt="">
+  <img src="../assets/img/bgiphone15.png" width="100%" alt="">
 </div>
 
   <!-- Bắt Đầu Danh Mục của Tháng -->
@@ -150,22 +150,27 @@
     </div>
   </section>
   <!-- Kết Thúc Sản Phẩm Nổi Bật -->
+  <div class="container">
   <div class="row">
-    <div class="col-6"> <img src="../assets/img/apple21.jpg" width="500" alt=""></div>
-    <div class="col-6"><img src="../assets/img/apple22.jpg" width="600" alt=""></div>
+    <div class="col-6"> <img src="../assets/img/apple21.jpg" width="100%" alt=""></div>
+    <div class="col-6"><img src="../assets/img/apple23.jpg" width="100%" alt=""></div>
 
   </div>
   <div class="row mt-5">
-    <div class="col-6"><img src="../assets/img/apple23.jpg" width="500" alt=""></div>
-    <div class="col-6"><img src="../assets/img/apple24.jpg" width="600" alt=""></div>
+
+    <div class="col-6"><img src="../assets/img/apple22.jpg" width="100%" alt=""></div>
+    <div class="col-6"><img src="../assets/img/apple24.jpg" width="100%" alt=""></div>
   </div>
-  <!-- Bắt Đầu Đánh Giá Khách Hàng -->
+</div>
+  <div class="container-fluid">
   <div class="row mt-5">
-    <div class="col-12"><img src="../assets/img/bg3.png" width="1240" alt=""></div>
+    <div class="col-12"><img src="../assets/img/bg3.png" width="100%" alt=""></div>
   </div>
   <div class="row ">
-    <div class="col-12"><img src="../assets/img/bg4.png" width="1240" alt=""></div>
+    <div class="col-12"><img src="../assets/img/bg4.png" width="100%" alt=""></div>
   </div>
+</div>
+
   <section class="container py-5">
     <div class="row text-center py-3">
       <div class="col-lg-6 m-auto">

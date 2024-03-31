@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse" id="templatemo_main_nav">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item ">
-              <router-link class="nav-link buttonb " :to="{ name: 'Home' }">Trang chủ ss</router-link>
+              <router-link class="nav-link buttonb " :to="{ name: 'Home' }">Trang chủ </router-link>
             </li>
             <li class="nav-item ">
               <router-link class="nav-link buttonb" :to="{ name: 'About' }">Giới thiệu</router-link>

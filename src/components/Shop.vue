@@ -1,42 +1,5 @@
 <template>
   <!-- Modal -->
-  <div
-    class="modal fade bg-white"
-    id="templatemo_search"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="w-100 pt-1 mb-5 text-right">
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <form
-        action=""
-        method="get"
-        class="modal-content modal-body border-0 p-0"
-      >
-        <div class="input-group mb-2">
-          <input
-            type="text"
-            class="form-control"
-            id="inputModalSearch"
-            name="q"
-            placeholder="Search ..."
-          />
-          <button type="submit" class="input-group-text bg-success text-light">
-            <i class="fa fa-fw fa-search text-white"></i>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- Start Content -->
   <div class="container py-5">
@@ -85,15 +48,18 @@
               </div>
       </div>
 
-      <div class="col-lg-9">
+      <div class="col-lg-9 ">
         <div class="row">
           <div class="col-md-4">
-            <div class="card mb-4 product-wap rounded bong">
+            <div class="card mb-4 product-wap  bong">
               <div class="card rounded">
                 <img
-                  class="card-img rounded-0 img-fluid"
+                  class="card-img  img-fluid"
                   src="../assets/img/hinh4.jpg"
                   alt="iPhone 13 Pro Max"
+                  width="100%"
+                  
+
                 >
               </div>
               <div class="card-body buttonb">
@@ -307,11 +273,14 @@
 <style>
   /* ... existing styles ... */
 
+.bong{
+  width: 85%;
+}
   .bong:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
-    width: 270px;
-    height: 360px;
+    width: 88%;
+
   }
 
   .hienmau:hover  {

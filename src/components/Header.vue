@@ -20,6 +20,7 @@
         </div>
       </div>
     </nav>
+    
     <!-- Close Top Nav -->
   
     <!-- Header -->
@@ -30,9 +31,10 @@
           <span aria-hidden="true" class="hover-text">&nbsp;@APPLE&nbsp;</span>
       </button>
   
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="templatemo_main_nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
   
         <div class="collapse navbar-collapse" id="templatemo_main_nav">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -50,25 +52,15 @@
             </li>
             <li class="nav-item" v-show="title == null">
               <router-link class="nav-link buttonb" :to="{ name: 'user' }">Tài Khoản</router-link>
+            </li>&ensp; &ensp;
+            <li class="nav-item">
+              <router-link class="nav-link buttonb " :to="{ name: 'cart' }"><i class="bi bi-cart3"></i></router-link>
             </li>
             <li class="nav-item" v-show="title !== null">
               <a @click="clearSession()" class="nav-link buttonb">Đăng xuất</a>
             </li>
           </ul>
-          
-          
-  
-          <div class="navbar-nav">
-            <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-              <div class="input-group">
-                <input type="text" class="form-control" id="inputMobileSearch" placeholder="Tìm kiếm ...">
-                <div class="input-group-text">
-                  <i class="fa fa-fw fa-search"></i>
-                </div>
-              </div>
-            </div>
-           
-          </div>
+ 
         </div>
       </div>
     </nav>

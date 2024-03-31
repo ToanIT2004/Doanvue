@@ -33,6 +33,11 @@ const admin = [
       path: "/usered",
       name: "usered",
       component: () => import("../components/usered.vue")
+    },
+    {
+      path: "/cart",
+      name: "cart",
+      component: () => import("../components/cart.vue")
     }
 ]
 

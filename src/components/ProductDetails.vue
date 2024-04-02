@@ -66,11 +66,11 @@
       </div>
       <!-- Chi tiết Sản phẩm -->
       <div class="col-md-7">
-        <h2>{{Products.tensp}}</h2>
-        <h2>Màu: {{ Products.idcolor }}</h2>
-        <h2>Dung lượng: {{ Products.idGB }}GB</h2>
-        <p>{{ Products.mota }}</p>
-        <h3>Giá Sản Phẩm: {{Products.dongia}}$</h3>
+        <h2 :value="tensp">{{Products.tensp}}</h2>
+        <h2 :value="idcolor">Màu: {{ Products.idcolor }}</h2>
+        <h2 :value="idGB">Dung lượng: {{ Products.idGB }}GB</h2>
+        <p :value="mota">{{ Products.mota }}</p>
+        <h3 :value="dongia">Giá Sản Phẩm: {{Products.dongia}}$</h3>
         <button class="btn btn-danger " name="thanhtoan" @click="showPaymentModal">MUA </button>&ensp;
         <button class="btn btn-primary">   <router-link class="nav-link  " :to="{ name: 'cart' }"> <i class="bi bi-cart4"></i></router-link></button>
         
@@ -87,12 +87,6 @@ export default {
   data() {
     return {
       mainImage: require("../assets/img/ip15.jpg"), // Đường dẫn hình ảnh
-      // additionalImages: [
-      //   require("../assets/img/ip15-1.jpg"),
-      //   require("../assets/img/ip15-2.jpg"),
-      //   require("../assets/img/ip15-3.png"),
-      //   require("../assets/img/ip15-4.jpg")
-      // ],
 
       Products: [],
       id: this.$route.params.id
@@ -117,9 +111,17 @@ export default {
       this.mainImage = image;
     },
     showPaymentModal() {
+        const data = {
+          img: this.img,
+          tensp: this.tensp,
+          idcolor: this.idcolor,
+          idGB: this.idGB,
+          mota: this.mota,
+          dongia: this.dongia,
+        }
+        console.log(data);
         var overlay = document.getElementById('overlay');
         var modal = document.getElementById('thanhToan');
-
         overlay.style.display = 'block';
         modal.style.display = 'block';
     },

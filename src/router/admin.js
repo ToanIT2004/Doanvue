@@ -20,7 +20,7 @@ const admin = [
       component: () => import("../components/Contact.vue")
    },
    {
-      path: "/Product-Details",
+      path: "/Product-Details/:id",
       name: "ProductDetails",
       component: () => import("../components/ProductDetails.vue")
    },

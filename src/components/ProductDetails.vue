@@ -43,8 +43,6 @@
                         <b>SDT:&ensp;</b>
                         <input type="text" id="disabledTextInput" class="rounded" placeholder="">
                     </div>
-             
-                
             </div>
         </div>
     </div>
@@ -57,19 +55,22 @@
     <div class="row mt-4">
       <!-- Hình ảnh Sản phẩm -->
       <div class="col-md-5">
-        <img :src="mainImage" alt="Hình ảnh Sản phẩm" width="100%">
+        <img :src="getImageUrl(Products.img)" alt="Hình ảnh Sản phẩm" class="w-100">
         <div class="row mt-3">
-          <!-- Hình ảnh Sản phẩm Bổ sung -->
-          <div v-for="(image, index) in additionalImages" :key="index" class="col-3">
-            <img :src="image" alt="Hình ảnh Bổ sung" width="100%" @click="changeMainImage(image)" >
+          <div class="col-4 d-flex">
+            <img :src="getImageUrl(Products.img1)" alt="Hình ảnh Sản phẩm" class="w-100 mx-2">
+            <img :src="getImageUrl(Products.img2)" alt="Hình ảnh Sản phẩm" class="w-100 mx-2">
+            <img :src="getImageUrl(Products.img3)" alt="Hình ảnh Sản phẩm" class="w-100 mx-2">
           </div>
         </div>
       </div>
       <!-- Chi tiết Sản phẩm -->
       <div class="col-md-7">
-        <h2>Tên Sản Phẩm</h2>
-        <p>Mô tả chi tiết về sản phẩm sẽ được hiển thị ở đây.</p>
-        <h3>Giá Sản Phẩm: $1000</h3>
+        <h2>{{Products.tensp}}</h2>
+        <h2>Màu: {{ Products.idcolor }}</h2>
+        <h2>Dung lượng: {{ Products.idGB }}GB</h2>
+        <p>{{ Products.mota }}</p>
+        <h3>Giá Sản Phẩm: {{Products.dongia}}$</h3>
         <button class="btn btn-danger " name="thanhtoan" @click="showPaymentModal">MUA </button>&ensp;
         <button class="btn btn-primary">   <router-link class="nav-link  " :to="{ name: 'cart' }"> <i class="bi bi-cart4"></i></router-link></button>
         
@@ -79,20 +80,39 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "ChiTietSanPham",
   data() {
     return {
       mainImage: require("../assets/img/ip15.jpg"), // Đường dẫn hình ảnh
-      additionalImages: [
-        require("../assets/img/ip15-1.jpg"),
-        require("../assets/img/ip15-2.jpg"),
-        require("../assets/img/ip15-3.png"),
-        require("../assets/img/ip15-4.jpg")
-      ]
+      // additionalImages: [
+      //   require("../assets/img/ip15-1.jpg"),
+      //   require("../assets/img/ip15-2.jpg"),
+      //   require("../assets/img/ip15-3.png"),
+      //   require("../assets/img/ip15-4.jpg")
+      // ],
+
+      Products: [],
+      id: this.$route.params.id
     };
   },
+
+  created() {
+    // Lấy tất cả product ra
+    axios.get("http://127.0.0.1:8000/api/product/" + this.id)
+      .then(res => {
+        this.Products = res.data;
+
+      })
+      .catch(error => console.log(error))
+  },
   methods: {
+    // Chỗ này nó sẽ tự động chạy vào public
+    getImageUrl(item) {
+      return `http://127.0.0.1:8000${item}`; // Đường dẫn của Laravel đến hình ảnh
+    },
     changeMainImage(image) {
       this.mainImage = image;
     },

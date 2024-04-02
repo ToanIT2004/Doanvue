@@ -13,77 +13,32 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
         </form>
-        <ul class="list-group mt-3">
-          <li class="list-group-item d-flex justify-content-between align-items-center btn-23">
-            <span class="text">IPHONE </span>
-            <span aria-hidden="" class="marquee"> IPHONE</span>
-         
+
+        <ul  class="list-group mt-3">
+          <li v-for="(item, index) in listTenLoai" @click="getTenLoai(item.tenloai)" :key="index" class="list-group-item d-flex justify-content-between align-items-center btn-23">
+            <span class="text">{{ item.tenloai }}</span>
+            <span aria-hidden="" class="marquee"> {{item.tenloai}}</span>
           </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center btn-23">
-           
-              <span class="text">watch </span>
-              <span aria-hidden="" class="marquee"> watch</span>
-           
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center btn-23">
-            <span class="text">ipad </span>
-            <span aria-hidden="" class="marquee"> ipad</span>
-         
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center btn-23">
-            <span class="text">macbook </span>
-            <span aria-hidden="" class="marquee"> macbook</span>
-         
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center btn-23">
-            
-            <span class="text">airpods </span>
-            <span aria-hidden="" class="marquee"> airpods</span>
-         
-          </li>
-          <!-- Add more categories as needed -->
         </ul> 
+
         <div align="center" class="mt-2">
-                <div class="cardb" ></div>
-              </div>
+            <div class="cardb" ></div>
+        </div>
       </div>
 
-      <div class="col-lg-9 ">
+      <div class="col-lg-9">
         <div class="row">
-          <div class="col-md-4">
-            <div class="card mb-4 product-wap  bong">
+          <div class="col-md-4" v-for="(item, index) in displayProduct" :key="index">
+            <div class="card mb-4 product-wap bong">
               <div class="card rounded">
-                <img
-                  class="card-img  img-fluid"
-                  src="../assets/img/hinh4.jpg"
-                  alt="iPhone 13 Pro Max"
-                  width="100%"
-                  
-
-                >
+                <img class="card-img  img-fluid" :src="getImageUrl(item.img)" alt="iPhone 13 Pro Max" width="100%">
               </div>
               <div class="card-body buttonb">
                 <a href="shop-single.html" class="h5 text-decoration-none"
-                  ><b>iPhone 13 Pro Max</b> </a
-                >
-                <ul
-                  class="w-100 list-unstyled d-flex justify-content-between mb-0"
-                >
-                  <li ><button class="xam"></button> &nbsp;
-                    <button class="xanh"></button>&nbsp;
-                    <button class="den"></button>&nbsp;</li>
-                  <li class="pt-2">
-                    <span
-                      class="product-color-dot color-dot-red float-left rounded-circle ml-1"
-                    ></span>
-                    <span
-                      class="product-color-dot color-dot-blue float-left rounded-circle ml-1"
-                    ></span>
-                    <span
-                      class="product-color-dot color-dot-black float-left rounded-circle ml-1"
-                    ></span>
-                  </li>
-                </ul>
+                  ><b>{{ item.tensp }}</b> <br>
+                  <b>{{ item.idcolor }}</b> <br>
+                  <b>{{ item.idGB }}</b> 
+                </a>
                 <ul class="list-unstyled d-flex justify-content-center mb-1">
                   <li>
                     <i class="text-warning fa fa-star"></i>
@@ -93,50 +48,29 @@
                     <i class="text-muted fa fa-star"></i>
                   </li>
                 </ul>
-                <p class="text-center mb-0"><b class="text-danger">Giá: </b>$999.00 </p>
+                <p class="text-center mb-0">
+                  <b class="text-danger">Giá: </b>
+                  <b class="text-decoration-line-through">{{ item.dongia }}</b>
+                  <b>{{ item.giamgia }}</b>
+                </p>
                 <div >
                   <a
                     class="btn btn-success text-white hienmau"
                     href="shop-single.html"
                     ><i class="far fa-heart"></i
                   ></a> &nbsp;
-                  <router-link class="btn btn-success text-white mt-2 hienmau" :to="{name: 'ProductDetails'}">
+                  <router-link class="btn btn-success text-white mt-2 hienmau" :to="{ name: 'ProductDetails', params: { id: item.id } }">
                     <i class="far fa-eye"></i>
                   </router-link>
+
                   &nbsp;
-                  <router-link class="btn btn-success text-white mt-2 hienmau" :to="{name: 'ProductDetails'}">
-                    <i class="fas fa-cart-plus"></i>
+                  <router-link class="btn btn-success text-white mt-2 hienmau" :to="{name: 'ProductDetails' ,params: { id: item.id }}">
+                    <i class="fas fa-cart-plus"> </i>
                   </router-link>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div div="row">
-          <ul class="pagination pagination-lg justify-content-end">
-            <li class="page-item disabled">
-              <a
-                class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0"
-                href="#"
-                tabindex="-1"
-                >1</a
-              >
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
-                href="#"
-                >2</a
-              >
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                href="#"
-                >3</a
-              >
-            </li>
-          </ul>
         </div>
       </div>
     </div>
@@ -236,8 +170,8 @@
                             alt="Brand Logo"
                         /></a>
                       </div>
-</div>
-</div>
+        </div>
+        </div>
                   <!--End Third slide-->
                 </div>
                 <!--End Slides-->
@@ -266,12 +200,66 @@
 </template>
 
 <script>
+import axios from 'axios'
    export default {
-      name: 'HelloWorld'
+      name: 'HelloWorld',
+      data() {
+        return {
+          listTenLoai: [],
+          Products: [],
+          tenloai: null,
+
+        }
+      },
+
+      methods: {
+        getTenLoai(tenloai) {
+          this.tenloai = tenloai; // Cập nhật giá trị tenloai
+        },
+
+        // Chỗ này nó sẽ tự động chạy vào public
+        getImageUrl(item) {
+          return `http://127.0.0.1:8000${item}`; // Đường dẫn của Laravel đến hình ảnh
+        }
+      },
+
+      computed:{
+        displayProduct() {
+          console.log(this.tenloai);
+          if(this.tenloai !== null) {
+            return this.Products.filter(product => product.idmenu == this.tenloai)
+          }else {
+            return 0;
+          }
+        }   
+      },
+
+      created() {
+
+        // Lấy menu trong database ra
+        axios.get('http://127.0.0.1:8000/api/menu') 
+        .then(res => {
+          this.listTenLoai = res.data
+          console.log(res.data)
+          if(this.listTenLoai.length > 0) {
+            this.tenloai = this.listTenLoai[1].tenloai;
+            console.log(this.tenloai)
+          }
+        })
+        .catch(error => console.log(error))
+
+        // Lấy tất cả product ra
+       axios.get("http://127.0.0.1:8000/api/product")
+        .then(res => {
+          this.Products = res.data;
+          console.log(this.Products)
+        })
+        .catch(error => console.log(error))
+      },
+      
    }
 </script>
 <style>
-  /* ... existing styles ... */
 
 .bong{
   width: 85%;

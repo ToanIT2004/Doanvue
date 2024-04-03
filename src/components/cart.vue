@@ -88,14 +88,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr align="center" class="align-middle">
-                <td><img src="../assets/img/ip15.jpg" alt="iPhone 15" width="100px"></td>
-                <td>Iphone 15 Pro Max 258GB</td>
-                <td>Xám</td>
-                <td>21,000,000đ</td>
-                <td><input class="text-center" type="number" name="quantity" id="quantity" min="1" value="1" style="width: 50px;"></td>
-                <td>free ship</td>
-                <td>21,000,000đ</td>
+              <tr v-for="(item, index) in cartItems" :key="index" align="center" class="align-middle">
+                <td><img :src="item.image" :alt="item.tensp" width="100px"></td>
+                <td>{{ item.tensp }}</td>
+                <td>{{ item.idcolor }}</td>
+                <td>{{ item.dongia }}</td>
+                <td><input class="text-center" type="number" name="quantity" :value="item.quantity" min="1" style="width: 50px;"></td>
+                <td>{{ item.voucher }}</td>
+                <td>{{ item.tong }}</td>
                 <td class="fs-1">X</td>
               </tr>
             </tbody>
@@ -135,9 +135,13 @@
   </template>
   
   <script>
+  import { mapGetters } from 'vuex';
   export default {
     name: 'ShoppingCart',
-    
+    computed: {
+    ...mapGetters(['cartItems'])
+  },
+
     methods: {
         changeMainImage(image) {
       this.mainImage = image;

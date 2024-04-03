@@ -1,8 +1,10 @@
 <template>
   <!-- Modal -->
-
+<div>
+  <img src="../assets/img/bg3.png" width="100%" alt="">
+</div>
   <!-- Start Content -->
-  <div class="container py-5">
+  <div class="container py-5 mt-5">
     <div class="row">
       <div class="col-lg-3 carda">
         <div class="mt-3" align="center">
@@ -20,25 +22,31 @@
             <span aria-hidden="" class="marquee"> {{item.tenloai}}</span>
           </li>
         </ul> 
+        
 
         <div align="center" class="mt-2">
             <div class="cardb" ></div>
         </div>
       </div>
 
+    
       <div class="col-lg-9">
         <div class="row">
           <div class="col-md-4" v-for="(item, index) in displayProduct" :key="index">
-            <div class="card mb-4 product-wap bong">
-              <div class="card rounded">
-                <img class="card-img  img-fluid" :src="getImageUrl(item.img)" alt="iPhone 13 Pro Max" width="100%">
+            <div class="card mb-4 product-wap bong product-card">
+              <div class="container">
+              <div class="card rounded hinh mt-2">
+                <router-link  :to="{ name: 'ProductDetails', params: { id: item.id } }">
+                     <img class="card-img img-fluid product-img mt-4 mb-4" :src="getImageUrl(item.img)" alt="iPhone 13 Pro Max">
+                     </router-link>
               </div>
-              <div class="card-body buttonb">
-                <a href="shop-single.html" class="h5 text-decoration-none"
-                  ><b>{{ item.tensp }}</b> <br>
+            </div>
+              <div class="card-body buttonb ">
+        
+                  <b>{{ item.tensp }}</b> <br>
                   <b>{{ item.idcolor }}</b> <br>
-                  <b>{{ item.idGB }}</b> 
-                </a>
+                  <b>{{ item.idGB }} GB</b> 
+               
                 <ul class="list-unstyled d-flex justify-content-center mb-1">
                   <li>
                     <i class="text-warning fa fa-star"></i>
@@ -51,12 +59,14 @@
                 <p class="text-center mb-0">
                   <b class="text-danger">Giá: </b>
                   <b class="text-decoration-line-through">{{ item.dongia }}</b>
+                  <br>
+                  <b class="text-danger">Chỉ Còn: </b>
                   <b>{{ item.giamgia }}</b>
                 </p>
                 <div >
                   <a
                     class="btn btn-success text-white hienmau"
-                    href="shop-single.html"
+                    href=""
                     ><i class="far fa-heart"></i
                   ></a> &nbsp;
                   <router-link class="btn btn-success text-white mt-2 hienmau" :to="{ name: 'ProductDetails', params: { id: item.id } }">
@@ -64,9 +74,10 @@
                   </router-link>
 
                   &nbsp;
-                  <router-link class="btn btn-success text-white mt-2 hienmau" :to="{name: 'ProductDetails' ,params: { id: item.id }}">
+                  <router-link class="btn btn-success text-white mt-2 hienmau" :to="{name: 'cart' ,params: { id: item.id } }" @click="addToCart(item)">
                     <i class="fas fa-cart-plus"> </i>
                   </router-link>
+                  
                 </div>
               </div>
             </div>
@@ -75,6 +86,7 @@
       </div>
     </div>
   </div>
+  
   <!-- Kết thúc Nội dung -->
 
   <!-- Bắt đầu Thương hiệu -->
@@ -201,63 +213,83 @@
 
 <script>
 import axios from 'axios'
-   export default {
-      name: 'HelloWorld',
-      data() {
-        return {
-          listTenLoai: [],
-          Products: [],
-          tenloai: null,
 
+export default {
+  name: 'HelloWorld',
+  data() {
+    return {
+      listTenLoai: [], // Danh sách các loại sản phẩm
+      Products: [], // Danh sách sản phẩm
+      tenloai: null, // Biến để lưu trữ loại sản phẩm đang được chọn
+      cartItems: [], // Danh sách sản phẩm trong giỏ hàng
+    }
+  },
+  methods: {
+    addToCart(product) {
+      // Kiểm tra xem bộ nhớ cục bộ đã chứa các mục trong giỏ hàng chưa
+      let existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+      // Tìm xem sản phẩm đã có trong giỏ hàng chưa
+      const existingItemIndex = existingCartItems.findIndex(item => item.id === product.id);
+
+      if (existingItemIndex !== -1) {
+        // Nếu sản phẩm đã có trong giỏ hàng, cập nhật số lượng lên 1
+        existingCartItems[existingItemIndex].quantity++;
+      } else {
+        // Nếu sản phẩm chưa có trong giỏ hàng, thêm vào giỏ hàng
+        existingCartItems.push({
+          id: product.id,
+          tensp: product.tensp,
+          dongia: product.giamgia,
+          quantity: 1,
+        });
+      }
+
+      // Lưu các mục giỏ hàng được cập nhật vào bộ nhớ cục bộ
+      localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+
+      // Cập nhật dữ liệu giỏ hàng để phản ánh các thay đổi trên giao diện người dùng
+      this.cartItems = existingCartItems;
+    },
+    getTenLoai(tenloai) {
+      this.tenloai = tenloai; // Cập nhật giá trị của biến tenloai
+    },
+    getImageUrl(item) {
+      return `http://127.0.0.1:8000${item}`;
+    }
+  },
+  computed: {
+    displayProduct() {
+      if (this.tenloai === null) {
+        return this.Products;
+      } else {
+        return this.Products.filter(product => product.idmenu === this.tenloai);
+      }
+    }
+  },
+  created() {
+    // Lấy danh sách menu từ cơ sở dữ liệu
+    axios.get('http://127.0.0.1:8000/api/menu')
+      .then(res => {
+        this.listTenLoai = res.data;
+        if (this.listTenLoai.length > 0) {
+          this.tenloai = this.listTenLoai[1].tenloai;
         }
-      },
+      })
+      .catch(error => console.log(error));
 
-      methods: {
-        getTenLoai(tenloai) {
-          this.tenloai = tenloai; // Cập nhật giá trị tenloai
-        },
+    // Lấy tất cả sản phẩm từ cơ sở dữ liệu
+    axios.get("http://127.0.0.1:8000/api/product")
+      .then(res => {
+        this.Products = res.data;
+      })
+      .catch(error => console.log(error));
 
-        // Chỗ này nó sẽ tự động chạy vào public
-        getImageUrl(item) {
-          return `http://127.0.0.1:8000${item}`; // Đường dẫn của Laravel đến hình ảnh
-        }
-      },
-
-      computed:{
-        displayProduct() {
-          console.log(this.tenloai);
-          if(this.tenloai !== null) {
-            return this.Products.filter(product => product.idmenu == this.tenloai)
-          }else {
-            return 0;
-          }
-        }   
-      },
-
-      created() {
-
-        // Lấy menu trong database ra
-        axios.get('http://127.0.0.1:8000/api/menu') 
-        .then(res => {
-          this.listTenLoai = res.data
-          console.log(res.data)
-          if(this.listTenLoai.length > 0) {
-            this.tenloai = this.listTenLoai[1].tenloai;
-            console.log(this.tenloai)
-          }
-        })
-        .catch(error => console.log(error))
-
-        // Lấy tất cả product ra
-       axios.get("http://127.0.0.1:8000/api/product")
-        .then(res => {
-          this.Products = res.data;
-          console.log(this.Products)
-        })
-        .catch(error => console.log(error))
-      },
-      
-   }
+    // Khi thành phần được tạo, truy xuất các mục giỏ hàng từ bộ nhớ cục bộ
+    let existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    this.cartItems = existingCartItems;
+  }
+}
 </script>
 <style>
 
@@ -472,4 +504,15 @@ import axios from 'axios'
   background: #333131;
 
  }
+ .product-img {
+  width: 100%;
+  height: 200px; /* Điều chỉnh chiều cao tùy theo ý muốn */
+  object-fit: cover; /* Chỉnh để hình ảnh đầy đủ trong card */
+}
+.product-card {
+  height: 500px; /* Điều chỉnh chiều cao tùy theo ý muốn */
+}
+.hinh {
+  height: 90%; /* Điều chỉnh chiều cao tùy theo ý muốn */
+}
 </style>

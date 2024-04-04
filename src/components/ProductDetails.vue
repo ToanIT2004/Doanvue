@@ -74,7 +74,7 @@
         <h4 :value="dongia"><b class="text-danger">Giá: </b> <i class="del">{{Products.dongia}} </i>$ </h4>
         <h4 :value="giamgia"><b class="text-danger">Giá Chỉ Còn:  </b> {{Products.giamgia}}$</h4>
         <button class="btn btn-danger " name="thanhtoan" @click="showPaymentModal">MUA </button>&ensp;
-        <button class="btn btn-primary">   <router-link class="nav-link  " :to="{ name: 'cart' }"> <i class="bi bi-cart4"></i></router-link></button>
+        <button class="btn btn-primary">   <router-link class="nav-link  " :to="{ name: 'cart' }"> <i @click="addToCartsss()" class="bi bi-cart4"></i></router-link></button>
         
       </div>
     </div>
@@ -118,6 +118,7 @@ Chúng tôi sử dụng vị trí của bạn để hiển thị cho bạn các 
 
 <script>
 import axios from 'axios';
+import { mapMutations } from 'vuex';
 
 export default {
   name: "ChiTietSanPham",
@@ -140,6 +141,17 @@ export default {
       .catch(error => console.log(error))
   },
   methods: {
+    // Lấy cart 
+    ...mapMutations(['addToCart']),
+    addToCartsss() {
+      const data = {
+        img: this.Products.img,
+        tensp: this.Products.tensp,
+        idcolor: this.Products.idcolor,
+        gia: this.Products.giamgia > 0 ? this.Products.giamgia : this.Products.dongia
+      }
+      this.addToCart(data);
+    },
     // Lấy đường dẫn hình ảnh từ Laravel
     getImageUrl(item) {
       return `http://127.0.0.1:8000${item}`; // Đường dẫn của Laravel đến hình ảnh

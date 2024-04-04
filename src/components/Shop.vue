@@ -64,19 +64,11 @@
                   <b>{{ item.giamgia }}</b>
                 </p>
                 <div >
-                  <a
-                    class="btn btn-success text-white hienmau"
-                    href=""
-                    ><i class="far fa-heart"></i
-                  ></a> &nbsp;
+               
                   <router-link class="btn btn-success text-white mt-2 hienmau" :to="{ name: 'ProductDetails', params: { id: item.id } }">
-                    <i class="far fa-eye"></i>
+                   xem sản phẩm
                   </router-link>
 
-                  &nbsp;
-                  <router-link class="btn btn-success text-white mt-2 hienmau" :to="{name: 'cart' ,params: { id: item.id } }" @click="addToCart(item)">
-                    <i class="fas fa-cart-plus"> </i>
-                  </router-link>
                   
                 </div>
               </div>
@@ -510,7 +502,7 @@ export default {
   object-fit: cover; /* Chỉnh để hình ảnh đầy đủ trong card */
 }
 .product-card {
-  height: 500px; /* Điều chỉnh chiều cao tùy theo ý muốn */
+  height: 480px; /* Điều chỉnh chiều cao tùy theo ý muốn */
 }
 .hinh {
   height: 90%; /* Điều chỉnh chiều cao tùy theo ý muốn */

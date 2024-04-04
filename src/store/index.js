@@ -6,12 +6,7 @@ export default createStore({
   },
   mutations: {
     addToCart(state, product) {
-      state.cartItems.push(product); // Thêm sản phẩm vào giỏ hàng
-    }
-  },
-  actions: {
-    addToCart({ commit }, product) {
-      commit('addToCart', product); // Gọi mutation để thêm sản phẩm vào giỏ hàng
+      state.cartItems.push(product); // Thêm sản phẩm vào danh sách giỏ hàng
     }
   },
   getters: {

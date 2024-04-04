@@ -96,7 +96,7 @@
                 <td><input class="text-center" type="number" name="quantity" :value="item.quantity" min="1" style="width: 50px;"></td>
                 <td>{{ item.voucher }}</td>
                 <td>{{ item.tong }}</td>
-                <td class="fs-1">X</td>
+                <td class="fs-1">xoa</td>
               </tr>
             </tbody>
           </table>

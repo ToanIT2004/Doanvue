@@ -3,7 +3,7 @@
     <div id="overlay" class="overlay"></div>
     <div class="container ">
         <div id="thanhToan" class="modal card cart" style="width:600px">
-            <label class="title text-danger" align="center"><b>Thông Tin Thanh Toán </b></label>
+            <label class="title text-danger" align="center"><b>Thông Tin Thanh Toán asd </b></label>
             <div class="row mt-4">
                 <div class="col-6">
                 <img :src="mainImage" alt="" style="width: 250px">
